@@ -10,3 +10,11 @@ jobs:
     - name: Build Container Image
       run: |
         docker build -t python-docker:latest .
+        docker tag python-docker:latest  ghcr.io/akhan4u/python-docker:latest
+
+    - name: Push to GHCR
+      run: |
+        echo $CR_PAT | docker login ghcr.io -u akhan4u --password-stdin
+        docker push ghcr.io/akhan4u/python-docker:latest
+      env:
+        CR_PAT: ${{ secrets.PAT_TOKEN }}
