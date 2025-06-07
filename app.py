@@ -1,5 +1,4 @@
-# Importing flask module in the project is mandatory
-# An object of Flask class is our WSGI application.
+"""A simple framework for building complex web applications"""
 from flask import Flask
 
 # Flask constructor takes the name of
@@ -12,6 +11,7 @@ app = Flask(__name__)
 @app.route('/')
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
+    """Function printing python version."""
     return 'Hello World'
 
 # main driver function
