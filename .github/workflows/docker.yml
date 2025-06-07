@@ -13,7 +13,8 @@ jobs:
         docker tag python-docker:latest  ghcr.io/akhan4u/python-docker:latest
 
     - name: Push to GHCR
+      env:
+        CR_PAT: ${{ secrets.PAT_TOKEN }}
       run: |
-        export CR_PAT=${{ secrets.PAT_TOKEN }}
         echo $CR_PAT | docker login ghcr.io -u akhan4u --password-stdin
         docker push ghcr.io/akhan4u/python-docker:latest
