@@ -14,6 +14,6 @@ jobs:
 
     - name: Push to GHCR
       run: |
-        export CR_PAT=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
+        export CR_PAT=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
         echo $CR_PAT | docker login ghcr.io -u akhan4u --password-stdin
         docker push ghcr.io/akhan4u/python-docker:latest
