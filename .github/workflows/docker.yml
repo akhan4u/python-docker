@@ -1,0 +1,21 @@
+name: Docker Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build Container Image
+      run: |
+        docker build -t python-docker:latest .
+        docker tag python-docker:latest  ghcr.io/akhan4u/python-docker:latest
+
+    - name: Push to GHCR
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      run: |
+        export CR_PAT=$GITHUB_TOKEN
+        echo $GITHUB_TOKEN | docker login ghcr.io -u akhan4u --password-stdin
+        docker push ghcr.io/akhan4u/python-docker:latest
